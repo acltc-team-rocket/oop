@@ -21,4 +21,41 @@ class List
     end
     return task_names
   end
+
+  def number_of_incomplete_tasks
+    p incomplete_task_names
+    incomplete_task_names.length
+  end
+
+  def complete_tasks
+    completed_tasks = []
+    @tasks.each do |task|
+      if task.complete == true
+        completed_tasks << task
+      end
+    end
+    return completed_tasks
+  end
+
+  def delete_complete_tasks
+    complete_tasks.each do |task|
+      @tasks.delete(task)
+    end
+  end
+
+  def tasks_names(tasks)
+    given_tasks = []
+    tasks.each do |task|
+      given_tasks << task.name
+    end
+    return given_tasks
+  end
+
+  def rank_priorities
+    highest_to_lowest = @tasks.sort_by do |task|
+      -task.priority 
+    end
+    return tasks_names(highest_to_lowest)
+  end
+
 end
